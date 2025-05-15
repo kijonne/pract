@@ -1,0 +1,51 @@
+Вот переработанное решение задачи 5.4 (Калькулятор ИМТ) с использованием document.write вместо console.log:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Калькулятор ИМТ</title>
+    <style>
+        .red { color: red; }
+        .green { color: green; }
+    </style>
+</head>
+<body>
+<script>
+    function calculateBMI(weight, height) {
+        const bmi = weight / Math.pow(height / 100, 2);
+        let status, colorClass;
+        
+        if (bmi < 18.5) {
+            status = "недостаточный вес";
+            colorClass = "red";
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+            status = "норма";
+            colorClass = "green";
+        } else if (bmi >= 25 && bmi <= 29.9) {
+            status = "избыточный вес";
+            colorClass = "red";
+        } else {
+            status = "ожирение";
+            colorClass = "red";
+        }
+        
+        document.write("<h2>Калькулятор ИМТ</h2>");
+        document.write(`<p>Вес: ${weight} кг</p>`);
+        document.write(`<p>Рост: ${height} см</p>`);
+        document.write(`<p>Формула: ИМТ = вес / рост² = ${weight} / (${height}/100)²</p>`);
+        document.write(`<p>ИМТ: <span class="${colorClass}">${bmi.toFixed(2)}</span></p>`);
+        document.write(`<p>Статус: ${status}</p>`);
+    }
+
+    // Пример использования
+    calculateBMI(70, 175);
+</script>
+</body>
+</html>
+Этот код:
+1. Создает HTML-страницу с калькулятором ИМТ
+2. Использует document.write для вывода результатов на страницу
+3. Добавляет стили для цветового выделения ИМТ (красный/зеленый)
+4. Выводит все шаги расчета и итоговый результат с цветовой индикацией
+
+Вы можете изменить параметры в вызове calculateBMI(70, 175) на нужные вам значения веса и роста.
