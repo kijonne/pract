@@ -1,0 +1,31 @@
+function playGame() {
+    const choices = ["камень", "ножницы", "бумага"];
+    
+    
+    let playerChoice = prompt("Выберите: камень, ножницы или бумага").toLowerCase();
+    
+  
+    while (!choices.includes(playerChoice)) {
+        playerChoice = prompt("Некорректный ввод. Выберите: камень, ножницы или бумага").toLowerCase();
+    }
+    
+
+    const computerChoice = choices[Math.floor(Math.random() * 3)];
+    
+    console.log(`Вы: ${playerChoice}, Компьютер: ${computerChoice}`);
+  
+    if (playerChoice === computerChoice) {
+        console.log("Ничья!");
+    } else if (
+        (playerChoice === "камень" && computerChoice === "ножницы") ||
+        (playerChoice === "ножницы" && computerChoice === "бумага") ||
+        (playerChoice === "бумага" && computerChoice === "камень")
+    ) {
+        console.log("Вы победили!");
+    } else {
+        console.log("Компьютер победил!");
+    }
+}
+
+
+playGame();
