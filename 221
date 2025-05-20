@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Обработка событий клавиатуры</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #keyInfo {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Отображение информации о нажатых клавишах</h1>
+    <div id="keyInfo">Нажмите любую клавишу...</div>
+
+    <script>
+        document.addEventListener('keydown', function(event) {
+            let keyName = event.key;
+            let keyCode = event.code;
+            let keyDescription = '';
+            
+            // Определяем словесное описание для специальных клавиш
+            switch(keyName) {
+                case 'ArrowUp': keyDescription = 'Стрелка вверх'; break;
+                case 'ArrowDown': keyDescription = 'Стрелка вниз'; break;
+                case 'ArrowLeft': keyDescription = 'Стрелка влево'; break;
+                case 'ArrowRight': keyDescription = 'Стрелка вправо'; break;
+                case 'Enter': keyDescription = 'Enter'; break;
+                case 'Escape': keyDescription = 'Escape'; break;
+                case 'Alt': keyDescription = 'Alt'; break;
+                case 'Control': keyDescription = 'Control'; break;
+                case 'Shift': keyDescription = 'Shift'; break;
+                default: keyDescription = keyName;
+            }
+            
+            // Выводим информацию в консоль
+            console.log(`Нажата клавиша: ${keyName}, Код: ${keyCode}, Описание: ${keyDescription}`);
+            
+            // Выводим информацию на страницу
+            document.getElementById('keyInfo').innerHTML = `
+                <p>Нажата клавиша: <strong>${keyName}</strong></p>
+                <p>Код клавиши: <strong>${keyCode}</strong></p>
+                <p>Описание: <strong>${keyDescription}</strong></p>
+            `;
+        });
+    </script>
+</body>
+</html>
