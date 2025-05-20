@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Кнопки-стрелки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .arrow-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin: 20px;
+        }
+        
+        .arrow-btn {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .arrow-btn:active, .arrow-btn.active {
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            transform: scale(1.1);
+            background-color: #45a049;
+        }
+        
+        #up {
+            top: 0;
+            left: 120px;
+        }
+        
+        #left {
+            top: 70px;
+            left: 40px;
+        }
+        
+        #down {
+            top: 70px;
+            left: 120px;
+        }
+        
+        #right {
+            top: 70px;
+            left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Кнопки-стрелки</h1>
+    <p>Нажимайте стрелки на клавиатуре или кликайте по кнопкам</p>
+    
+    <div class="arrow-container">
+        <button id="up" class="arrow-btn">↑</button>
+        <button id="left" class="arrow-btn">←</button>
+        <button id="down" class="arrow-btn">↓</button>
+        <button id="right" class="arrow-btn">→</button>
+    </div>
+
+    <script>
+        // Обработка нажатия клавиш клавиатуры
+        document.addEventListener('keydown', function(event) {
+            const arrowKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+            
+            if (arrowKeys.includes(event.key)) {
+                event.preventDefault(); // Предотвращаем прокрутку страницы
+                
+                let btnId = '';
+                switch(event.key) {
+                    case 'ArrowUp': btnId = 'up'; break;
+                    case 'ArrowDown': btnId = 'down'; break;
+                    case 'ArrowLeft': btnId = 'left'; break;
+                    case 'ArrowRight': btnId = 'right'; break;
+                }
+                
+                document.getElementById(btnId).classList.add('active');
+            }
+        });
+        
+        document.addEventListener('keyup', function(event) {
+            const arrowKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+            
+            if (arrowKeys.includes(event.key)) {
+                let btnId = '';
+                switch(event.key) {
+                    case 'ArrowUp': btnId = 'up'; break;
+                    case 'ArrowDown': btnId = 'down'; break;
+                    case 'ArrowLeft': btnId = 'left'; break;
+                    case 'ArrowRight': btnId = 'right'; break;
+                }
+                
+                document.getElementById(btnId).classList.remove('active');
+            }
+        });
+        
+        // Обработка кликов по кнопкам
+        const arrowButtons = document.querySelectorAll('.arrow-btn');
+        arrowButtons.forEach(button => {
+            button.addEventListener('mousedown', function() {
+                this.classList.add('active');
+            });
+            
+            button.addEventListener('mouseup', function() {
+                this.classList.remove('active');
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
